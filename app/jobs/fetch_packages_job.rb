@@ -35,5 +35,9 @@ class FetchPackagesJob < ApplicationJob
 
     CranPackage.import(packages, on_duplicate_key_ignore: true)
     @session.update(completed_at: Time.now)
+
+    @session.cran_packages.each do |x|
+      FetchPackageDetailsJob.perform_later(x)
+    end
   end
 end

@@ -14,7 +14,7 @@ describe FetchPackagesJob, type: :job do
     end.to change { CrawlerSession.count }.by(1)
   end
 
-  it "creates a list of cran packages" do
+  it "creates a list of cran packages and enqueues for crawling" do
     session = create(:crawler_session)
 
     expect do
@@ -22,5 +22,6 @@ describe FetchPackagesJob, type: :job do
         described_class.perform_now(session.url)
       end
     end.to change { CranPackage.count }.from(0).to(10)
+      .and change { Delayed::Job.count }.from(0).to(10)
   end
 end
