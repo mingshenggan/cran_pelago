@@ -1,0 +1,121 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://cran.r-project.org/src/contrib//PACKAGES
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 13 Mar 2020 05:47:59 GMT
+      Server:
+      - Apache
+      Last-Modified:
+      - Fri, 13 Mar 2020 05:10:35 GMT
+      Etag:
+      - '"324be3-5a0b57d52d5eb"'
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '3296227'
+    body:
+      encoding: UTF-8
+      string: |
+        Package: A3
+        Version: 1.0.0
+        Depends: R (>= 2.15.0), xtable, pbapply
+        Suggests: randomForest, e1071
+        License: GPL (>= 2)
+        MD5sum: 027ebdd8affce8f0effaecfcd5f5ade2
+        NeedsCompilation: no
+
+        Package: aaSEA
+        Version: 1.1.0
+        Depends: R(>= 3.4.0)
+        Imports: DT(>= 0.4), networkD3(>= 0.4), shiny(>= 1.0.5),
+                shinydashboard(>= 0.7.0), magrittr(>= 1.5), Bios2cor(>= 2.0),
+                seqinr(>= 3.4-5), plotly(>= 4.7.1), Hmisc(>= 4.1-1)
+        Suggests: knitr, rmarkdown
+        License: GPL-3
+        MD5sum: 0f9aaefc1f1cf18b6167f85dab3180d8
+        NeedsCompilation: no
+
+        Package: ABACUS
+        Version: 1.0.0
+        Depends: R (>= 3.1.0)
+        Imports: ggplot2 (>= 3.1.0), shiny (>= 1.3.1),
+        Suggests: rmarkdown (>= 1.13), knitr (>= 1.22)
+        License: GPL-3
+        MD5sum: 50c54c4da09307cb95a70aaaa54b9fbd
+        NeedsCompilation: no
+
+        Package: abbyyR
+        Version: 0.5.5
+        Depends: R (>= 3.2.0)
+        Imports: httr, XML, curl, readr, plyr, progress
+        Suggests: testthat, rmarkdown, knitr (>= 1.11), lintr
+        License: MIT + file LICENSE
+        MD5sum: e048a3bca6ea32126e6c367415c0bfaf
+        NeedsCompilation: no
+
+        Package: abc
+        Version: 2.1
+        Depends: R (>= 2.10), abc.data, nnet, quantreg, MASS, locfit
+        License: GPL (>= 3)
+        MD5sum: c9fffe4334c178917f762735aba59653
+        NeedsCompilation: no
+
+        Package: abc.data
+        Version: 1.0
+        Depends: R (>= 2.10)
+        License: GPL (>= 3)
+        MD5sum: 799079dbbdd0cfc9d9c61c3e35241806
+        NeedsCompilation: no
+
+        Package: ABC.RAP
+        Version: 0.9.0
+        Depends: R (>= 3.1.0)
+        Imports: graphics, stats, utils
+        Suggests: knitr, rmarkdown
+        License: GPL-3
+        MD5sum: 38c65a7251d28ef2462ee430ded95700
+        NeedsCompilation: no
+
+        Package: abcADM
+        Version: 1.0
+        Imports: Rcpp (>= 1.0.1)
+        LinkingTo: Rcpp, BH
+        License: GPL-3
+        MD5sum: 8134f67912b506194e3dab4ccd6e75f7
+        NeedsCompilation: yes
+
+        Package: ABCanalysis
+        Version: 1.2.1
+        Depends: R (>= 2.10)
+        Imports: plotrix
+        License: GPL-3
+        MD5sum: 678e03837e25a922bf71bafe1f8de617
+        NeedsCompilation: no
+
+        Package: abcdeFBA
+        Version: 0.4
+        Depends: Rglpk,rgl,corrplot,lattice,R (>= 2.10)
+        Suggests: LIM,sybil
+        License: GPL-2
+        MD5sum: c84d45a85d8ab6bbe517365e8845db83
+        NeedsCompilation: no
+    http_version: null
+  recorded_at: Fri, 13 Mar 2020 05:48:04 GMT
+recorded_with: VCR 5.1.0

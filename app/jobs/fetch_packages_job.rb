@@ -1,11 +1,19 @@
 require "open-uri"
 
 class FetchPackagesJob < ApplicationJob
-  def perform(url)
-    # TODO: Sanitize + validate url
-    session = CrawlerSession.find_or_create_by(url: url)
+  def perform(url, forced: false)
+    if !forced
+      # TODO: Sanitize + validate url heavily
+      raise "Please provide the url leading to the packages directory, not the url to PACKAGES" if url[/PACKAGES$/]
+    end
 
-    file = open("#{url}/PACKAGES")
+    @session = CrawlerSession.find_or_create_by!(url: url)
+
+    import_packages!
+  end
+
+  private def import_packages!
+    file = open("#{@session.url}/PACKAGES")
 
     # ASSUMPTION: text field has a limit of 65536 characters.
     # Background job will make noise if it exceeds.
@@ -18,10 +26,10 @@ class FetchPackagesJob < ApplicationJob
 
       next puts("Unable to find package name in: [[ #{details} ]]") unless package
       next puts("Unable to find package version in: [[ #{details} ]]") unless version
-      packages << CranPackage.new(crawler_session_id: session.id, name: package, version: version, parsed_at: Time.now)
+      packages << CranPackage.new(crawler_session_id: @session.id, name: package, version: version, parsed_at: Time.now)
     end
 
     CranPackage.import(packages, on_duplicate_key_ignore: true)
-    session.update(completed_at: Time.now)
+    @session.update(completed_at: Time.now)
   end
 end
