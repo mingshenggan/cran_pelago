@@ -45,5 +45,9 @@ class FetchPackageDetailsJob < ApplicationJob
     tar_extract.close
 
     cran_package
+  rescue Exception => e
+    # To prevent unnecessary retrying
+    # Assume logging = reporting to error monitoring framework
+    logger.error("Error processing: CranPackage(id: #{cran_package.id}), error message: #{e.message}")
   end
 end
