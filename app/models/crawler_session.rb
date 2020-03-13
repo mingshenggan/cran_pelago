@@ -1,0 +1,2 @@
+class CrawlerSession < ApplicationRecord
+end
