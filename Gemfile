@@ -12,7 +12,6 @@ gem "rails", "~> 6.0.2", ">= 6.0.2.1"
 # Frontend
 gem "sass-rails", ">= 6"
 gem "turbolinks", "~> 5"
-gem "webpacker", "~> 4.0"
 
 # Backend
 gem "delayed_job_active_record"
