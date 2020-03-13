@@ -10,7 +10,6 @@ gem "puma", "~> 4.1"
 gem "rails", "~> 6.0.2", ">= 6.0.2.1"
 
 # Frontend
-gem "sass-rails", ">= 6"
 gem "turbolinks", "~> 5"
 
 # Backend
@@ -21,7 +20,7 @@ gem "httparty"
 
 # Database Related
 gem "activerecord-import"
-gem 'sqlite3', '~> 1.4'
+gem "pg"
 
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
