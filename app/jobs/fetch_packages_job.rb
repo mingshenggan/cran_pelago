@@ -26,7 +26,11 @@ class FetchPackagesJob < ApplicationJob
 
       next puts("Unable to find package name in: [[ #{details} ]]") unless package
       next puts("Unable to find package version in: [[ #{details} ]]") unless version
-      packages << CranPackage.new(crawler_session_id: @session.id, name: package, version: version, parsed_at: Time.now)
+      packages << CranPackage.new(
+        crawler_session_id: @session.id,
+        name: package,
+        version: version,
+      )
     end
 
     CranPackage.import(packages, on_duplicate_key_ignore: true)
