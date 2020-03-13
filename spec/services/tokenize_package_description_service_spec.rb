@@ -16,8 +16,18 @@ describe TokenizePackageDescriptionService do
     expect(res[:description]).to eq("Given a protein multiple sequence alignment, it is daunting task to assess the effects of substitutions along sequence length. 'aaSEA' package is intended to help researchers to rapidly analyse property changes caused by single, multiple and correlated amino acid substitutions in proteins. Methods for identification of co-evolving positions from multiple sequence alignment are as described in :  Pel\xC3\xA9 et al., (2017) <doi:10.4172/2379-1764.1000250>.")
   end
 
-  it "captures Maintainer"
-  it "captures Author"
+  it "captures Maintainer" do
+    res = described_class.call(input)
+    expect(res[:maintainer]).to eq([
+      "Raja Sekhara Reddy D.M",
+      "raja.duvvuru@gmail.com",
+    ])
+  end
+
+  it "captures Author" do
+    res = described_class.call(input)
+    expect(res[:authors]).to eq(["Raja Sekhara Reddy D.M"])
+  end
 
   context "split_and_remerge" do
     it "handles multi-line descriptions" do

@@ -37,9 +37,8 @@ class FetchPackageDetailsJob < ApplicationJob
       details = TokenizePackageDescriptionService
         .call(entry.read)
         .merge(parsed_at: Time.now)
-      author_and_maintainer = details.slice(:authors, :maintainer)
 
-      cran_package.update(details.except(:authors, :maintainers))
+      cran_package.update(details.except(:authors, :maintainer))
 
       break
     end

@@ -3,7 +3,7 @@ class TokenizePackageDescriptionService
     "Date/Publication" => :published_at,
     "Description" => :description,
     "Title" => :title,
-    "Author" => :author,
+    "Author" => :authors,
     # NOTE: Not intending to deal with this as part of the technical test
     # "Authors@R" => :author_data_structure,
     "Maintainer" => :maintainer,
@@ -50,12 +50,22 @@ class TokenizePackageDescriptionService
       case k
       when :published_at
         [k, Time.parse(v)]
-      when :author
-        # TODO
-        # [k,v]
+      when :authors
+        authors = v.split(", ").map do |s|
+          first_square_bracket_index = s.index(" [")
+          if first_square_bracket_index
+            s[0..first_square_bracket_index].strip
+          else
+            s.strip
+          end
+        end
+        [k, authors]
       when :maintainer
-        # TODO
-        # [k,v]
+        # For now, use simplistic approach of splitting, then removing extra ">"
+        # This avoids unnecessarily losing data for processing "<"
+        name, email = v.split(" <")
+        email = email[0..-2]
+        [k, [name, email]]
       else
         [k,v]
       end
