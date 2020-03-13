@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_042353) do
+ActiveRecord::Schema.define(version: 2020_03_13_043049) do
 
   create_table "crawler_sessions", force: :cascade do |t|
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "completed_at"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
