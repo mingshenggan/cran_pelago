@@ -14,6 +14,7 @@ gem "sass-rails", ">= 6"
 gem "turbolinks", "~> 5"
 
 # Backend
+gem "active_model_serializers", "~> 0.10.0"
 gem "daemons"
 gem "delayed_job_active_record"
 gem "httparty"
