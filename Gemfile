@@ -15,7 +15,7 @@ gem "turbolinks", "~> 5"
 gem "webpacker", "~> 4.0"
 
 # Backend
-gem "sidekiq"
+gem "delayed_job_active_record"
 
 # Database Related
 gem "activerecord-import"
