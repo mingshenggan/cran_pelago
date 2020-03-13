@@ -42,6 +42,8 @@ group :test do
   gem "ffaker"
   gem "pry"
   gem "pry-byebug"
+  gem "vcr"
+  gem "webmock"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
