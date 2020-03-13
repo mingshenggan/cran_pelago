@@ -14,6 +14,7 @@ gem "sass-rails", ">= 6"
 gem "turbolinks", "~> 5"
 
 # Backend
+gem "daemons"
 gem "delayed_job_active_record"
 
 # Database Related
