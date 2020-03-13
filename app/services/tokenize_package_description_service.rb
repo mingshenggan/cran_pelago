@@ -11,8 +11,6 @@ class TokenizePackageDescriptionService
 
   def self.call(text)
     text = split_and_remerge(text)
-    puts text.to_s
-    puts
     text = replace_labels_with_symbols(text)
     text = convert_values_to_correct_data_format(text)
     text
