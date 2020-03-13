@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_044938) do
+ActiveRecord::Schema.define(version: 2020_03_13_050846) do
 
   create_table "cran_packages", force: :cascade do |t|
     t.string "name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2020_03_13_044938) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["crawler_session_id"], name: "index_cran_packages_on_crawler_session_id"
+    t.index ["name", "version"], name: "index_cran_packages_on_name_and_version", unique: true
   end
 
   create_table "crawler_sessions", force: :cascade do |t|
