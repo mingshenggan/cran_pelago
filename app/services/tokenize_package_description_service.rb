@@ -49,6 +49,10 @@ class TokenizePackageDescriptionService
       when :published_at
         [k, Time.parse(v)]
       when :authors
+        # TODO: Cases to handle include:
+        # 1. Titles, i.e. My Name, Ph.D., Another Name, MSC
+        # 2. Common pool of labels, i.e. Someone Important [aut, cre], Another Person [aut]
+        # 3. ... I'm sure there's more
         authors = v.split(", ").map do |s|
           first_square_bracket_index = s.index(" [")
           if first_square_bracket_index

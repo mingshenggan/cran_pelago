@@ -3,7 +3,9 @@ require "rubygems/package"
 require "zlib"
 
 class FetchPackageDetailsJob < ApplicationJob
-  def perform(cran_package)
+  def perform(cran_package, forced: false)
+    return true if cran_package.parsed_at && !forced
+
     url = "#{cran_package.crawler_session.url}/#{cran_package.name}_#{cran_package.version}.tar.gz"
     file = open(url)
 
@@ -19,7 +21,25 @@ class FetchPackageDetailsJob < ApplicationJob
         .call(entry.read)
         .merge(parsed_at: Time.now)
 
-      cran_package.update(details.except(:authors, :maintainer))
+      CranPackage.transaction do
+        cran_package.update(details.except(:authors, :maintainer))
+
+        # In a real world project, I will likely contest the effectiveness of tokenizing info of authors / maintainers
+        # Doesn't make much sense because there's no clear identifiers. Best effort = upcase everything when saving
+        if details[:authors]
+          details[:authors].each do |name|
+            author = Person.find_or_create_by(name: name.upcase)
+            cran_package.authors << author
+          end
+        end
+
+        if details[:maintainer]
+          name, email = details[:maintainer]
+          maintainer = Person.find_or_create_by(name: name.upcase)
+          maintainer.update(email: email)
+          cran_package.maintainers << maintainer
+        end
+      end
 
       break
     end
