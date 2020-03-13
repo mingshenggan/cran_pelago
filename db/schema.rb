@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_043049) do
+ActiveRecord::Schema.define(version: 2020_03_13_044938) do
+
+  create_table "cran_packages", force: :cascade do |t|
+    t.string "name"
+    t.string "version"
+    t.datetime "published_at"
+    t.string "title"
+    t.text "description"
+    t.integer "crawler_session_id", null: false
+    t.datetime "parsed_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["crawler_session_id"], name: "index_cran_packages_on_crawler_session_id"
+  end
 
   create_table "crawler_sessions", force: :cascade do |t|
     t.string "url"
@@ -34,4 +47,5 @@ ActiveRecord::Schema.define(version: 2020_03_13_043049) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
+  add_foreign_key "cran_packages", "crawler_sessions"
 end
