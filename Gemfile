@@ -16,6 +16,7 @@ gem "turbolinks", "~> 5"
 # Backend
 gem "daemons"
 gem "delayed_job_active_record"
+gem "httparty"
 
 # Database Related
 gem "activerecord-import"
