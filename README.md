@@ -13,7 +13,7 @@ RSpec
 
 # Getting Started
 
-## Path 1: Barebones Setup (Recommended)
+## Path 1: Barebones Setup
 
 1. Install [rbenv](https://github.com/rbenv/rbenv#installation)
 1. Install [Ruby 2.6.5](https://github.com/rbenv/rbenv#installing-ruby-versions)
@@ -23,15 +23,14 @@ RSpec
 1. Start background worker: `bin/delayed_job start`
 1. Run server: `rails s`
 
-## Path 2: Docker (WIP)
+## Path 2: Docker Compose
 
-I would love to help ease your process but I will need to go soon. I hope the first path is convenient for you.
+1. Install [docker](https://docs.docker.com/install/)
+1. Install [docker-compose](https://docs.docker.com/compose/install/)
 
 ```
-docker build .
+docker-compose up
 ```
-
-Otherwise, over the weekend I will setup docker compose for this project.
 
 # Application Logic
 
@@ -39,8 +38,13 @@ Otherwise, over the weekend I will setup docker compose for this project.
 
 1. Start rails console
 ```
+# 1. If using local setup
 $ rails c
+
+# 2. If using docker-compose
+$ docker-compose run app /bin/sh
 ```
+
 2. TriggerCrawler
 ```
 irb(main):001:0> FetchPackagesJob.perform_later("https://cran.r-project.org/src/contrib/")
